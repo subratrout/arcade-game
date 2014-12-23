@@ -15,23 +15,17 @@
  */
 
 var Engine = (function(global) {
-    /* Predefine the variables we'll be using within this scope,
-     * create the canvas element, grab the 2D context for that canvas
-     * set the canvas elements height/width and add it to the DOM.
-     */
     var doc = global.document,
         win = global.window,
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
+        pattern = {},
         lastTime;
 
-    canvas.width = 505;
-    canvas.height = 606;
-    doc.body.appendChild(canvas);
+    canvas.width = 600;
+    canvas.height = 600;
+    doc.getElementById('c').appendChild(canvas);
 
-    /* This function serves as the kickoff point for the game loop itself
-     * and handles properly calling the update and render methods.
-     */
     function main() {
         /* Get our time delta information which is required if your game
          * requires smooth animation. Because everyone's computer processes
@@ -172,7 +166,15 @@ var Engine = (function(global) {
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/char-boy.png'
+        'images/char-boy.png',
+        'images/Star.png',
+        'images/Selector.png',
+        'images/Rock.png',
+        'images/Heart.png',
+        'images/gem-orange.png',
+        'images/gem-green.png',
+        'images/gem-blue.png',
+        'images/char-cat-girl.png'
     ]);
     Resources.onReady(init);
 
