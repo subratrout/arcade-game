@@ -1,10 +1,23 @@
+var enemySpeed = [50, 90, 150, 220, 230];
+var columns = [0, 101, 202, 303, 404, 505, 606];
+var rows = [80, 160, 240];
+var gemImages =['images/gem-blue.png', 'images/gem-green', 'images/gem-orange'];
+
+//Choose a random number from the array
+var num = function(array){
+    return array[Math.floor(Math.random()*array.length)];
+}
+
+
+
 // Enemies our player must avoid
 var Enemy = function() {
     this.sprite = 'images/enemy-bug.png';
     this.x = -100;
-    this.y = 150;
+    this.y = num(rows);
     this.width = 70;
     this.height = 83;
+    this.speed = num(enemySpeed);
 }
 
 // Update the enemy's position, required method for game
