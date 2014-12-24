@@ -41,7 +41,7 @@ Enemy.prototype.render = function() {
 // Now write your own player class
 var Player = function(){
     this.sprite = 'images/char-boy.png';
-    this.x = 200;
+    this.x = 400;
     this.y = 400;
     this.width = 50;
     this.height = 50;
@@ -62,16 +62,16 @@ Player.prototype.render = function() {
 //reset
 
 Player.prototype.reset = function(){
-    this.x = 200;
+    this.x = 400;
     this.y = 400;
 }
 // a handleInput() method.
 
 Player.prototype.handleInput = function (key) {
-    if(key === 'left' && this.x !=0){
+    if(key === 'left' && this.x >0){
         this.x -= 101;
     }
-    else if(key === 'right' && this.x <600){
+    else if(key === 'right' && this.x <800){
         this.x += 101;
     }
 
@@ -79,7 +79,7 @@ Player.prototype.handleInput = function (key) {
         this.y -= 83;
     }
 
-    else if(key === 'down' && this.y<600){
+    else if(key === 'down' && this.y<400){
         this.y +=83;
     }
   }

@@ -22,8 +22,8 @@ var Engine = (function(global) {
         pattern = {},
         lastTime;
 
-    canvas.width = 600;
-    canvas.height = 600;
+    canvas.width = 910;
+    canvas.height = 610;
     doc.getElementById('c').appendChild(canvas);
 
     function main() {
@@ -110,7 +110,7 @@ var Engine = (function(global) {
                 'images/grass-block.png'    // Row 2 of 2 of grass
             ],
             numRows = 6,
-            numCols = 5,
+            numCols = 10,
             row, col;
 
         /* Loop through the number of rows and columns we've defined above
