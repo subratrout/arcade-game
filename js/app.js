@@ -18,8 +18,13 @@ var Enemy = function() {
     this.width = 70;
     this.height = 83;
     this.speed = num(enemySpeed);
+    this.reset();
 }
 
+Enemy.prototype.reset = function(){
+    var startPosition = this.x;
+    this.y = this.y;
+}
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
@@ -53,9 +58,30 @@ Player.prototype.update = function(dt) {
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
+
+//reset
+
+Player.prototype.reset = function(){
+    this.x = 200;
+    this.y = 400;
+}
 // a handleInput() method.
 
-Player.prototype.handleInput = function () {
+Player.prototype.handleInput = function (key) {
+    if(key === 'left' && this.x !=0){
+        this.x -= 101;
+    }
+    else if(key === 'right' && this.x <600){
+        this.x += 101;
+    }
+
+    else if(key === 'up' && this.y >0){
+        this.y -= 83;
+    }
+
+    else if(key === 'down' && this.y<600){
+        this.y +=83;
+    }
   }
 
 // Now instantiate your objects.
