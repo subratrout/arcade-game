@@ -1,7 +1,7 @@
 var enemySpeed = [50, 90, 150, 220, 230];
 var columns = [0, 101, 202, 303, 404, 505, 606, 707, 808];
 var rows = [81, 162, 243];
-var gemImages =['images/gem-blue.png', 'images/gem-green', 'images/gem-orange'];
+var gemImages =['images/gem-blue.png', 'images/gem-green.png', 'images/gem-orange.png'];
 
 //Choose a random number from the array
 var num = function(array){
@@ -131,8 +131,39 @@ function gameOver() {
 //Create a Gem Class
 
 var Gem = function(){
+    this.gemImg =num(gemImages);
+    this.x = num(columns);
+    this.y = num(rows);
+    this.count = 0;
 
 };
+
+Gem.prototype.render = function(){
+    ctx.drawImage(Resources.get(this.gemImg), this.x, this.y);
+}
+
+Gem.prototype.update = function() {
+    document.getElementById('score').innerHTML = "Score " + score;
+    if(player.y <= this.y + 30 && player.y >= this.y - 30 && player.x <= this.x + 30 && player.x >= this.x - 30) {
+        score+=1;
+        this.gemImg = num(gemImages);
+        this.x = num(columns);
+        this.y = num(rows);
+        if (allEnemies.length < 10) {
+            allEnemies.push(new Enemy());
+        }
+    }
+}
+
+
+
+
+//score
+
+var score = 0;
+
+
+
 //reset
 
 Player.prototype.reset = function(){
