@@ -6,7 +6,7 @@ var gemImages =['images/gem-blue.png', 'images/gem-green', 'images/gem-orange'];
 //Choose a random number from the array
 var num = function(array){
     return array[Math.floor(Math.random()*array.length)];
-}
+};
 
 
 
@@ -19,7 +19,7 @@ var Enemy = function() {
     this.height = 80;
     this.speed = num(enemySpeed);
     this.reset();
-}
+};
 
 Enemy.prototype.reset = function(){
     this.x= -100;
@@ -29,7 +29,7 @@ Enemy.prototype.reset = function(){
     if(this.y > 249){
         this.y = num(rows);
     }
-}
+};
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
@@ -40,12 +40,12 @@ Enemy.prototype.update = function(dt) {
     if(this.x > 920){
         this.reset();
     }
-}
+};
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
 
 // Now write your own player class
 var Player = function(){
@@ -61,19 +61,50 @@ var Player = function(){
 Player.prototype.update = function(dt) {
     this.x*dt;
     this.y*dt;
-}
+    this.checkCollide();
+};
+
+Player.prototype.checkCollide = function(){
+    //If player goes into water it loses a life
+
+    if(this.y <= 0){
+        //numLife.loseLife();
+        this.reset();
+    }
+
+    else if(this.y >=82 && this.y <=249){
+        allEnemies.forEach(function(enemy){
+                if((player.x - enemy.x < 50 && player.y - enemy.y < 50) && (player.x - enemy.x > -50 && player.y - enemy.y > -50)){
+                    player.reset();
+                }
+
+        });
+    }
+};
 //render()
 
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
 
+// Crate a Life Class
+var Life = function(){
+    this.lifeImg ='images/Heart.png';
+    this.number = 6;
+};
+
+
+//Create a Gem Class
+
+var Gem = function(){
+
+};
 //reset
 
 Player.prototype.reset = function(){
     this.x = 400;
     this.y = 400;
-}
+};
 // a handleInput() method.
 
 Player.prototype.handleInput = function (key) {
@@ -91,7 +122,7 @@ Player.prototype.handleInput = function (key) {
     else if(key === 'down' && this.y<400){
         this.y +=83;
     }
-  }
+  };
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
@@ -101,9 +132,10 @@ var enemy3 = new Enemy();
 var enemy4 = new Enemy();
 var allEnemies = [enemy1, enemy2, enemy3, enemy4];
 
-// Place the player object in a variable called player
+// Create variable for player, number of lives and gems
 var player = new Player();
-
+var numLife = new Life();
+var gem = new Gem();
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
