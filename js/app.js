@@ -68,13 +68,14 @@ Player.prototype.checkCollide = function(){
     //If player goes into water it loses a life
 
     if(this.y <= 0){
-        //numLife.loseLife();
+        numLife.loseLife();
         this.reset();
     }
-
+    //If player touches bug it loses a life
     else if(this.y >=82 && this.y <=249){
         allEnemies.forEach(function(enemy){
                 if((player.x - enemy.x < 50 && player.y - enemy.y < 50) && (player.x - enemy.x > -50 && player.y - enemy.y > -50)){
+                    numLife.loseLife();
                     player.reset();
                 }
 
@@ -92,6 +93,39 @@ var Life = function(){
     this.lifeImg ='images/Heart.png';
     this.number = 6;
 };
+
+Life.prototype.render = function(){
+    var imageLife = 0;
+    for(i=0; i< this.number; i++){
+        ctx.drawImage(Resources.get(this.lifeImg), imageLife, 0);
+        imageLife += 50;
+    }
+    if(this.number == 0){
+        gameOver();
+    }
+}
+
+Life.prototype.loseLife = function(){
+    if(this.number > 0){
+        this.number-=1;
+    }
+}
+
+//When the player runs out all lives, game over
+
+function gameOver() {
+    var removeScore = document.getElementById('score');
+        removeScore.parentNode.removeChild(removeScore);
+        ctx.clearRect(0,0, 505, 600);
+        ctx.fillStyle="#FF0000";
+        ctx.font = "40px Lato Condensed";
+        ctx.fillStyle="#000000";
+        ctx.fillText("Game Over!", 140, 100);
+        ctx.font="30px Lato Condensed";
+        ctx.fillText("Your final score is " + score, 140, 150);
+        keyEnabled = false;
+}
+
 
 
 //Create a Gem Class

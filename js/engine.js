@@ -147,6 +147,7 @@ var Engine = (function(global) {
         });
 
         player.render();
+        numLife.render();
     }
 
     /* This function does nothing but it could have been a good place to
@@ -171,6 +172,7 @@ var Engine = (function(global) {
         'images/Selector.png',
         'images/Rock.png',
         'images/Heart.png',
+        'images/heart-tiny.png',
         'images/gem-orange.png',
         'images/gem-green.png',
         'images/gem-blue.png',
