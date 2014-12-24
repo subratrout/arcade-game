@@ -120,9 +120,9 @@ function gameOver() {
         ctx.fillStyle="#FF0000";
         ctx.font = "40px Lato Condensed";
         ctx.fillStyle="#000000";
-        ctx.fillText("Game Over!", 140, 100);
+        ctx.fillText("Game Over!", 340, 200);
         ctx.font="30px Lato Condensed";
-        ctx.fillText("Your final score is " + score, 140, 150);
+        ctx.fillText("Your final score is " + score, 240, 250);
         keyEnabled = false;
 }
 
