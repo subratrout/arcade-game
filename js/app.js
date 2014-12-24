@@ -1,6 +1,6 @@
 var enemySpeed = [50, 90, 150, 220, 230];
-var columns = [0, 101, 202, 303, 404, 505, 606];
-var rows = [80, 160, 240];
+var columns = [0, 101, 202, 303, 404, 505, 606, 707, 808];
+var rows = [81, 162, 243];
 var gemImages =['images/gem-blue.png', 'images/gem-green', 'images/gem-orange'];
 
 //Choose a random number from the array
@@ -16,21 +16,30 @@ var Enemy = function() {
     this.x = -100;
     this.y = num(rows);
     this.width = 70;
-    this.height = 83;
+    this.height = 80;
     this.speed = num(enemySpeed);
     this.reset();
 }
 
 Enemy.prototype.reset = function(){
-    var startPosition = this.x;
-    this.y = this.y;
+    this.x= -100;
+    this.y += 80;
+    this.speed = num(enemySpeed);
+
+    if(this.y > 249){
+        this.y = num(rows);
+    }
 }
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
-    // You should multiply any movement by the dt parameter
+    // Multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    this.x += this.speed *dt;
+    if(this.x > 920){
+        this.reset();
+    }
 }
 
 // Draw the enemy on the screen, required method for game
