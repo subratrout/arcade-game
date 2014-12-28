@@ -1,3 +1,17 @@
 body {
     text-align: center;
 }
+
+#restart-game {
+  margin-bottom: 50px;
+}
+
+a.btn {
+  background-color: #eee;
+  color: #1c1c1c;
+  font-size: 18px;
+  padding: 8px 30px;
+  text-decoration: none;
+  display: inline-block;
+}
+

@@ -72,7 +72,7 @@ Player.prototype.checkCollide = function(){
         this.reset();
     }
     //If player touches bug it loses a life
-    else if(this.y >=82 && this.y <=249){
+    else if(this.y >=62 && this.y <=249){
         allEnemies.forEach(function(enemy){
                 if((player.x - enemy.x < 50 && player.y - enemy.y < 50) && (player.x - enemy.x > -50 && player.y - enemy.y > -50)){
                     numLife.loseLife();
